@@ -33,3 +33,7 @@ By default, `cypress run` will run all tests headlessly.
 # Html Reporter
 
 npm i --save-dev cypress-mochawesome-reporter
+
+# XPath support
+
+npm install -D cypress-xpath

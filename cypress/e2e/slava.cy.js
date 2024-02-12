@@ -64,7 +64,7 @@ describe('cypress demo test set', () => {
 
   // ---------------------------------------------------------
 
-  it.only('paging', () => {
+  it('paging', () => {
     const locatorSearchInput = '.data-table--header [type="search"]';
     const locatorBankNames = '.dataTables-content-main tr td a';
     const textToSearch = 'Bank of Wausau';
@@ -75,7 +75,7 @@ describe('cypress demo test set', () => {
 
     cy.get(locatorBankNames)
       .should('have.length.gt', 0) // or .gte for greater or equal
-      .should('have.length', 13);
+      .should('have.length', 12);
 
     const bankNames = []
     cy.get(locatorBankNames)
@@ -86,31 +86,31 @@ describe('cypress demo test set', () => {
       });
 
 
+    // cy.wait(1000);
+    // cy.xpath('//a[text()="5"]').last().click();
+    // cy.wait(5000);
+
+    for (let i = 2; i < 5; i++) {
+      cy.wait(1000);
+      cy.xpath(`//a[text()="${i}"]`).last().click();
+      cy.wait(5000);
+    }
 
 
-    // log(`type in search field: ${textToSearch}`);
-    // cy.get(locatorSearchInput).type(`${textToSearch}`);
-
-    // cy.wait(3000);
-
-    // const amount = getNumberOfElements(locatorBankNames);
-    // log(`${amount}`);
-
-    // assertNumberOfElements(locatorBankNames, 12);
-
-    // getNumberOfElements(locatorBankNames).then((value) => {
-    //   if (value.length === 12) {
-    //     cy.log('TRUE');
-    //   } else if (value.length === 0) {
-    //     cy.log('Not found');
+    // cy.get('body').then((body) => {
+    //   if (body.find('[title="Log out"]').length > 0) {
+    //     cy.contains('Log out').click();
+    //     cy.contains('Submit').click();
     //   }
     // });
 
-    // log(`${amount}`);
-
-
-    // log(`assert that there is only 1 row in the table with search results`);
-    // cy.get(locatorTableRows).should('have.length', 1);
+    // // .paginate_button[data-dt-idx="48"]
+    //       cy.get('.dataTables_paginate')
+    //         .each((bank) => bankNames.push(bank.text()))
+    //         .then(() => {
+    //           // cy.log(bankNames.join(', '));
+    //           log(bankNames.join(', '));
+    //         });
   });
 
   // ---------------------------------------------------------
