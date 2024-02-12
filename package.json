@@ -9,6 +9,7 @@
   "author": "Slava Bulba",
   "license": "ISC",
   "devDependencies": {
-    "cypress": "^13.6.4"
+    "cypress": "^13.6.4",
+    "cypress-mochawesome-reporter": "^3.8.1"
   }
 }

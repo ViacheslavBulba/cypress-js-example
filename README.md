@@ -28,3 +28,8 @@ By default, `cypress run` will run all tests headlessly.
 - api tests in cypress are 2 times slower than in playwright
 - no convenient vs code plugin
 - tool for developers, not for QA
+- cypress is promised based - so in order to use it you should first learn and understand how JS Promises work
+
+# Html Reporter
+
+npm i --save-dev cypress-mochawesome-reporter

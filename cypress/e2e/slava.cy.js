@@ -2,11 +2,13 @@ import { log } from "../utils/WebElementsUtils";
 
 describe('cypress demo test set', () => {
 
-  beforeEach(() => {
-    // const startUrl = 'https://www.target.com/';
-    // cy.task('log', `open page ${startUrl}`);
-    // cy.visit(startUrl);
-  })
+  // beforeEach(() => {
+  //   // const startUrl = 'https://www.target.com/';
+  //   // cy.task('log', `open page ${startUrl}`);
+  //   // cy.visit(startUrl);
+  // })
+
+  // ---------------------------------------------------------
 
   it('target.com search', () => {
     const locatorSearchResults = '[data-test="product-title"]';
@@ -29,6 +31,8 @@ describe('cypress demo test set', () => {
     cy.get(locatorSearchResults).first().should('have.text', productToSearch);
   });
 
+  // ---------------------------------------------------------
+
   it('FDIC first column header text', () => {
     const locatorTableHeaders = '.dtfullname';
     const expectedHeader = 'Bank Name';
@@ -50,11 +54,65 @@ describe('cypress demo test set', () => {
     log(`open page ${startUrl}`);
     cy.visit(startUrl);
 
+    // input
     log(`type in search field: ${textToSearch}`);
-    cy.get(locatorSearchInput).type(`${textToSearch}`);
+    cy.get(locatorSearchInput).type(`${textToSearch}`).should('have.value', textToSearch);
 
     log(`assert that there is only 1 row in the table with search results`);
     cy.get(locatorTableRows).should('have.length', 1);
   });
+
+  // ---------------------------------------------------------
+
+  it.only('paging', () => {
+    const locatorSearchInput = '.data-table--header [type="search"]';
+    const locatorBankNames = '.dataTables-content-main tr td a';
+    const textToSearch = 'Bank of Wausau';
+
+    const startUrl = 'https://www.fdic.gov/resources/resolutions/bank-failures/failed-bank-list/index.html';
+    log(`open page ${startUrl}`);
+    cy.visit(startUrl);
+
+    cy.get(locatorBankNames)
+      .should('have.length.gt', 0) // or .gte for greater or equal
+      .should('have.length', 13);
+
+    const bankNames = []
+    cy.get(locatorBankNames)
+      .each((bank) => bankNames.push(bank.text()))
+      .then(() => {
+        // cy.log(bankNames.join(', '));
+        log(bankNames.join(', '));
+      });
+
+
+
+
+    // log(`type in search field: ${textToSearch}`);
+    // cy.get(locatorSearchInput).type(`${textToSearch}`);
+
+    // cy.wait(3000);
+
+    // const amount = getNumberOfElements(locatorBankNames);
+    // log(`${amount}`);
+
+    // assertNumberOfElements(locatorBankNames, 12);
+
+    // getNumberOfElements(locatorBankNames).then((value) => {
+    //   if (value.length === 12) {
+    //     cy.log('TRUE');
+    //   } else if (value.length === 0) {
+    //     cy.log('Not found');
+    //   }
+    // });
+
+    // log(`${amount}`);
+
+
+    // log(`assert that there is only 1 row in the table with search results`);
+    // cy.get(locatorTableRows).should('have.length', 1);
+  });
+
+  // ---------------------------------------------------------
 
 });

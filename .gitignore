@@ -1,5 +1,4 @@
 node_modules/
-/test-results/
 *.log
 *.csv
 /.vscode/
@@ -13,6 +12,9 @@ package-lock.json
 
 # testing
 /coverage
+/test-results/
+/cypress/reports/
+/cypress/screenshots/
 
 # production
 /build
