@@ -1,4 +1,5 @@
 import { log } from "../utils/WebElementsUtils";
+require('cypress-xpath');
 
 describe('cypress demo test set', () => {
 
@@ -64,7 +65,7 @@ describe('cypress demo test set', () => {
 
   // ---------------------------------------------------------
 
-  it('paging', () => {
+  it('paging - failed attempts', () => {
     const locatorSearchInput = '.data-table--header [type="search"]';
     const locatorBankNames = '.dataTables-content-main tr td a';
     const textToSearch = 'Bank of Wausau';
@@ -85,16 +86,62 @@ describe('cypress demo test set', () => {
         log(bankNames.join(', '));
       });
 
+    // for (let i = 2; i < 5; i++) {
+    //   cy.wait(1000);
+    //   cy.xpath(`//a[text()="${i}"]`).last().click();
+    //   cy.wait(1000);
+    // }
 
-    // cy.wait(1000);
-    // cy.xpath('//a[text()="5"]').last().click();
-    // cy.wait(5000);
+    // for (let i = 3; i > -3; i--) { // AssertionError: Timed out retrying after 4000ms: Expected to find element: `//a[text()="0"]`, but never found it.
+    //   cy.wait(1000);
+    //   cy.xpath(`//a[text()="${i}"]`).last().click();
+    //   cy.wait(1000);
+    // }
 
-    for (let i = 2; i < 5; i++) {
-      cy.wait(1000);
-      cy.xpath(`//a[text()="${i}"]`).last().click();
-      cy.wait(5000);
+    for (let i = 3; i > -3; i--) { // AssertionError: Timed out retrying after 4000ms: Expected to find element: `//a[text()="0"]`, but never found it.
+
+      // cy.get('body').then((body) => {
+      //   if (cy.get(`a.paginate_button`).contains(`${i}`).length > 0) {
+      //     cy.wait(1000);
+      //     cy.xpath(`//a[text()="${i}"]`).last().click();
+      //     cy.wait(1000);
+      //   }
+      // });
+
+      // // cy.xpath(`//a[text()="${i}"]`).then(($el) => {
+      // cy.get(`a`).contains(`${i}`).then(($el) => {
+      //   if ($el.length) {
+      //     // Element exists, do something
+      //     cy.wait(1000);
+      //     cy.xpath(`//a[text()="${i}"]`).last().click();
+      //     cy.wait(1000);
+      //   } else {
+      //     // Element does not exist, do something else
+      //   }
+      // })
+      // // .catch((error) => { });
+
+
+      // cy.get('body').then((body) => {
+      //   if (body.find(`a:contains("^${i}$")`).length > 0) { // div:contains("^ab$") 
+      //     cy.wait(1000);
+      //     log('click');
+      //     cy.xpath(`//a[text()="${i}"]`).last().click();
+      //     cy.wait(1000);
+      //   } else {
+      //     log('not found');
+      //   }
+      // });
+
+
     }
+
+    // cy.get('body').then((body) => {
+    //   if (body.find('[title="Log out"]').length > 0) {
+    //     cy.contains('Log out').click();
+    //     cy.contains('Submit').click();
+    //   }
+    // });
 
 
     // cy.get('body').then((body) => {
